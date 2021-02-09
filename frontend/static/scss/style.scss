@@ -1,0 +1,246 @@
+$blue: #74b9ff;
+$primary: #eee;
+$text-muted: #808080;
+$shadow: #c0c0c0;
+$border: #dcdcdc;
+$text-box: #d3d3d3;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+.container {
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+}
+
+.header {
+  width: 100%;
+  height: 10%;
+  box-shadow: 0 4px 2px -2px $shadow;
+  z-index: 1;
+  position: relative;
+}
+
+.left-container {
+  width: 30%;
+  height: 90%;
+  float: left;
+  border-right: 1px solid $border;
+}
+
+.left-header {
+  width: 30%;
+  height: 100%;
+  float: left;
+  background: $primary;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.profile-pic {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  margin-left: 10px;
+}
+
+.left-header-icons {
+  position: absolute;
+  right: 10px;
+  color: grey;
+  font-size: 25px;
+
+  i {
+    margin-left: 10px;
+    transition: 0.3s;
+    cursor: pointer;
+
+    &:hover {
+      color: $blue;
+    }
+  }
+}
+
+.search-box {
+  background: $text-box;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+  i {
+    font-size: 25px;
+  }
+
+  input {
+    width: 80%;
+    font-size: 20px;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    padding: 10px;
+
+    &::placeholder {
+      color: #a9a9a9;
+    }
+  }
+}
+
+.friend-drawer-container {
+  overflow-y: scroll;
+  height: 90%;
+}
+
+.friend-drawer {
+  background: #fff;
+  display: flex;
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  position: relative;
+  cursor: pointer;
+  transition: 0.3s ease;
+
+  &:hover {
+    background: $blue;
+
+    .text *,
+    .time {
+      color: #fff;
+    }
+  }
+}
+
+.text {
+  margin-left: 10px;
+  p {
+    margin: 0;
+    color: $text-muted;
+  }
+}
+
+.time {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+hr {
+  width: 80%;
+  border: 0;
+  margin: 0 auto;
+  background: #dcdcdc;
+  height: 1px;
+}
+
+.right-container {
+  float: left;
+  width: 70%;
+  height: 90%;
+}
+
+.right-header {
+  display: flex;
+  align-items: center;
+  width: 70%;
+  height: 100%;
+  float: left;
+  background: $primary;
+}
+
+.chat-panel {
+  width: 100%;
+  height: 90%;
+  overflow-y: scroll;
+}
+
+.right-chat-bubble-wrapper {
+  width: 100%;
+  // background: green;
+  position: relative;
+  display: inline-block;
+}
+
+.right-chat-bubble {
+  background-color: $blue;
+  padding: 10px;
+  margin: 15px;
+  display: block;
+  float: right;
+  border-radius: 10px;
+  position: relative;
+  right: 10px;
+
+  &::after {
+    content: "";
+    border-top: 20px solid $blue;
+    border-right: 20px solid transparent;
+    border-left: 0px solid green;
+    border-bottom: 20px solid transparent;
+    position: absolute;
+    top: 0;
+    right: -10px;
+  }
+}
+
+.left-chat-bubble-wrapper {
+  width: 100%;
+  display: inline-block;
+}
+
+.left-chat-bubble {
+  background-color: $shadow;
+  padding: 10px;
+  margin: 10px;
+  display: block;
+  border-radius: 10px;
+  float: left;
+  position: relative;
+  left: 10px;
+
+  &::after {
+    content: "";
+    border-left: 20px solid transparent;
+    border-top: 20px solid $shadow;
+    left: -10px;
+    position: absolute;
+    top: 0;
+  }
+}
+
+.message-time {
+  font-size: smaller;
+  position: absolute;
+  bottom: 0;
+  right: 25px;
+  color: $text-muted;
+}
+
+.message-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+
+  input {
+    float: left;
+    width: 80%;
+  }
+
+  i {
+    font-size: 25px;
+    cursor: pointer;
+
+    &:hover {
+      color: $blue;
+    }
+  }
+}

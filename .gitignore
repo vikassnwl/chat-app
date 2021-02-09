@@ -1,0 +1,7 @@
+env
+.env
+node_modules
+migrations
+db.sqlite3
+__pycache__
+index.css.map
