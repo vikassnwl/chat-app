@@ -14,8 +14,9 @@ export class RightContainer extends Component {
     };
   }
 
-  componentDidMount() {
-    fetch("/api/list")
+  refreshList = () => {
+    console.log("in componentdidmount of rightcontainer");
+    fetch("/api/user/" + this.state.user.id + "/messages")
       .then((res) => res.json())
       .then((json) => {
         this.setState({
@@ -28,6 +29,13 @@ export class RightContainer extends Component {
           objDiv.scrollTop = objDiv.scrollHeight;
         }
       });
+  };
+
+  componentDidUpdate(pP, pS) {
+    console.log("in componentdidupdate of rightcontainer");
+    if (pS.user !== this.state.user) {
+      this.refreshList();
+    }
   }
 
   onSubmitHandler = (e) => {
@@ -48,9 +56,10 @@ export class RightContainer extends Component {
     }
     const csrftoken = getCookie("csrftoken");
     e.preventDefault();
-
+    console.log("before data");
     const data = {
       text: this.state.message,
+      user: this.state.user.id,
     };
     fetch("/api/create", {
       method: "POST",
@@ -60,7 +69,9 @@ export class RightContainer extends Component {
       },
       body: JSON.stringify(data),
     }).then(() => {
-      this.componentDidMount();
+      console.log("before update");
+      // this.componentDidUpdate();
+      this.refreshList();
     });
   };
 
@@ -73,6 +84,7 @@ export class RightContainer extends Component {
   getUser = (user) => {
     this.setState({
       user: user,
+      // messages: user.messages,
     });
   };
 
@@ -102,7 +114,7 @@ export class RightContainer extends Component {
         {(window.outerWidth > 550 || hide) && (
           <div style={{ width: right_width }} className="right-container">
             <div className="chat-panel">
-              {isLoaded
+              {true
                 ? messages.map((message) => (
                     <div className="right-chat-bubble-wrapper">
                       <div className="right-chat-bubble">{message.text}</div>
